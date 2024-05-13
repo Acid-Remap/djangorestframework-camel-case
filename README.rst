@@ -78,7 +78,8 @@ Underscoreize Options
 =====================
 
 
-**No Underscore Before Number**
+No Underscore Before Number
+---------------------------
 
 
 As raised in `this comment <https://github.com/krasa/StringManipulation/issues/8#issuecomment-121203018>`_
@@ -123,7 +124,9 @@ Alternatively, you can change this behavior on a class level by setting `json_un
         parser_classes = (NoUnderscoreBeforeNumberCamelCaseJSONParser,)
 
 
-** Ignore Fields **
+Ignore Fields
+-------------
+
 
 You can also specify fields which should not have their data changed.
 The specified field(s) would still have their name change, but there would be no recursion.
@@ -158,8 +161,11 @@ The `my_key` field would not have its data changed:
 .. code-block:: python
 
     {"myKey": {"do_not_change": 1}}
+    
 
-** Ignore Keys **
+Ignore Keys
+-----------
+
 
 You can also specify keys which should *not* be renamed.
 The specified field(s) would still change (even recursively).
@@ -197,7 +203,10 @@ The `unchanging_key` field would not be renamed:
 
 ignore_keys and ignore_fields can be applied to the same key if required.
 
-** Preserve Underscore Keys **
+
+Preserve Underscore Keys
+------------------------
+
 
 If you need to preserve the underscore keys alongside the camel case versions for compatibility or other reasons, specify that option:
 
