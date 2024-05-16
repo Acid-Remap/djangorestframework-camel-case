@@ -14,6 +14,7 @@ DEFAULTS = {
         "ignore_keys": None,
         "preserve_underscore_keys": False,
         "ignore_paths": [],
+        "normalize_inputs": True
     },
 }
 

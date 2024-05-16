@@ -8,7 +8,7 @@ Django REST Framework JSON CamelCase
 .. image:: https://badge.fury.io/py/djangorestframework-camel-case.svg
     :target: https://badge.fury.io/py/djangorestframework-camel-case
 
-Camel case JSON support for Django REST framework.
+Camel case JSON support for Django REST framework.  This affects input and output by default.
 
 ============
 Installation
@@ -18,7 +18,7 @@ At the command line::
 
     $ pip install djangorestframework-camel-case
 
-Add the render and parser to your django settings file.
+Add the render and parser to your django settings file as needed.  If you only want responses to be converted to camelCase, you only need the renderer classes, not the parsers (but check the settings).
 
 .. code-block:: python
 
@@ -61,8 +61,7 @@ to use another renderer, the two possible are:
 
 `drf_orjson_renderer.renderers.ORJSONRenderer` or
 `drf_ujson.renderers.UJSONRenderer` or
-`rest_framework.renderers.UnicodeJSONRenderer` for DRF < 3.0,specify it in your django
-settings file.
+`rest_framework.renderers.UnicodeJSONRenderer` for DRF < 3.0, specify it in your django
 settings file.
 
 .. code-block:: python
@@ -76,6 +75,25 @@ settings file.
 =====================
 Underscoreize Options
 =====================
+
+Normalize Inputs
+----------------
+
+By default, the middleware normalizes any incoming query parameters and other inputs from 
+camelCase to snake_case so everything passes through the same logic.  If you do not want this,
+disable the `normalize_inputs` setting:
+
+.. code-block:: python
+
+    REST_FRAMEWORK = {
+        # ...
+        "JSON_UNDERSCOREIZE": {
+            # ...
+            "normalize_inputs": False,
+            # ...
+        },
+        # ...
+    }
 
 
 No Underscore Before Number
