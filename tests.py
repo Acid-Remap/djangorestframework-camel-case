@@ -100,8 +100,11 @@ class UnderscoreToCamelTestCase(TestCase):
             "mix_123123a_and_letters": 7,
             "mix_123123aa_and_letters_complex": 8,
             "no_underscore_before123": 9,
+            "snake_first": {"camelSecond": 1},
+            "snake_first_2": {"snake_second": 1},
+            "camelFirst": {"snake_second": 1},
         }
-        output = {
+        expected_output = {
             "twoWord": 1,
             "two_word": 1,
             "longKeyWithManyUnderscores": 2,
@@ -120,8 +123,15 @@ class UnderscoreToCamelTestCase(TestCase):
             "mix_123123aa_and_letters_complex": 8,
             "noUnderscoreBefore123": 9,
             "no_underscore_before123": 9,
+            "snakeFirst": {"camelSecond": 1},
+            "snake_first": {"camelSecond": 1},
+            "snakeFirst2": {"snakeSecond": 1, "snake_second": 1},
+            "snake_first_2": {"snakeSecond": 1, "snake_second": 1},
+            "camelFirst": {"snakeSecond": 1, "snake_second": 1},
         }
-        self.assertEqual(camelize(data, preserve_underscore_keys=True), output)
+        output = camelize(data, preserve_underscore_keys=True)
+
+        self.assertEqual(expected_output, output)
 
 
 class CamelToUnderscoreTestCase(TestCase):
