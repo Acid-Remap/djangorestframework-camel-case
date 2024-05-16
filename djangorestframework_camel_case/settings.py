@@ -13,6 +13,7 @@ DEFAULTS = {
         "ignore_fields": None,
         "ignore_keys": None,
         "preserve_underscore_keys": False,
+        "ignore_paths": [],
     },
 }
 

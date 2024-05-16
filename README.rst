@@ -242,6 +242,28 @@ Would become:
     }
 
 
+Ignore Request Paths
+--------------------
+
+Entire requests can be ignored by the JSON renderer.
+
+.. code-block:: python
+
+    REST_FRAMEWORK = {
+        # ...
+        "JSON_UNDERSCOREIZE": {
+            # ...
+            "ignore_paths": [
+                '/api/v1/my_custom_endpoint/'
+            ],
+            # ...
+        },
+        # ...
+    }
+    
+With this option set, `/api/v1/my_custom_endpoint/` would not pass through the custom renderer.
+
+
 =============
 Running Tests
 =============
