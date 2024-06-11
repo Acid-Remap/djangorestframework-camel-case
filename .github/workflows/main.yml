@@ -28,4 +28,4 @@ jobs:
       - name: Test with tox
         run: tox
       - name: Run Bandit security checks
-        run: bandit -r . -lll
+        run: bandit -r ./djangorestframework_camel_case -lll
