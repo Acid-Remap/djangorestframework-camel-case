@@ -133,6 +133,46 @@ class UnderscoreToCamelTestCase(TestCase):
 
         self.assertEqual(expected_output, output)
 
+    def test_custom_key_map(self):
+        data = {
+            "two_word": 1,
+            "long_key_with_many_underscores": 2,
+            "only_1_key": 3,
+            "only_one_letter_a": 4,
+            "b_only_one_letter": 5,
+            "only_c_letter": 6,
+            "mix_123123a_and_letters": 7,
+            "mix_123123aa_and_letters_complex": 8,
+            "no_underscore_before123": 9,
+            "snake_first": {"camelSecond": 1},
+            "snake_first_2": {"snake_second": 1},
+            "camelFirst": {"snake_second": 1},
+            "push_to_qa": True,
+            "my_other_custom_key": True
+        }
+        expected_output = {
+            "twoWord": 1,
+            "longKeyWithManyUnderscores": 2,
+            "only1Key": 3,
+            "onlyOneLetterA": 4,
+            "bOnlyOneLetter": 5,
+            "onlyCLetter": 6,
+            "mix123123aAndLetters": 7,
+            "mix123123aaAndLettersComplex": 8,
+            "noUnderscoreBefore123": 9,
+            "snakeFirst": {"camelSecond": 1},
+            "snakeFirst2": {"snakeSecond": 1},
+            "camelFirst": {"snakeSecond": 1},
+            "pushToQA": True,
+            "myOther_CustomKey": True
+        }
+        output = camelize(data, custom_key_map={
+            'push_to_qa': 'pushToQA',
+            'my_other_custom_key': 'myOther_CustomKey'
+        })
+
+        self.assertEqual(expected_output, output)
+
 
 class CamelToUnderscoreTestCase(TestCase):
     def test_camel_to_under_keys(self):

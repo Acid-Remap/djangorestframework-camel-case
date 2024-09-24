@@ -24,6 +24,7 @@ def camelize(data, **options):
     # Handle lazy translated strings.
     ignore_fields = options.get("ignore_fields") or ()
     ignore_keys = options.get("ignore_keys") or ()
+    custom_key_map = options.get("custom_key_map") or {}
     preserve_underscore_keys = options.get("preserve_underscore_keys", False)
     if isinstance(data, Promise):
         data = force_str(data)
@@ -36,7 +37,10 @@ def camelize(data, **options):
             if isinstance(key, Promise):
                 key = force_str(key)
             if isinstance(key, str) and "_" in key:
-                new_key = re.sub(camelize_re, underscore_to_camel, key)
+                if key in custom_key_map:
+                    new_key = custom_key_map[key]
+                else:
+                    new_key = re.sub(camelize_re, underscore_to_camel, key)
             else:
                 new_key = key
 
