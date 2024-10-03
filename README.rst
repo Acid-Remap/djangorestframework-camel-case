@@ -282,6 +282,32 @@ Entire requests can be ignored by the JSON renderer.
 With this option set, `/api/v1/my_custom_endpoint/` would not pass through the custom renderer.
 
 
+Custom Keys
+--------------------
+
+If there are keys for which the normal underscore-to-camel case conversion is not appropriate, you can specify custom keys.
+
+.. code-block:: python
+
+    REST_FRAMEWORK = {
+        # ...
+        "JSON_UNDERSCOREIZE": {
+            # ...
+            "custom_key_map": {
+                'my_custom_id': 'myCustomID',
+                'my_custom_uuid': 'myCustomUUID',
+            },
+            # ...
+        },
+        # ...
+    }
+
+With this option set, the keys would be transformed as follows:
+
+- `my_custom_id`: `myCustomID` instead of the default `myCustomId`
+- `my_custom_uuid`: `myCustomUUID` instead of the default `myCustomUuid`
+
+
 =============
 Running Tests
 =============
